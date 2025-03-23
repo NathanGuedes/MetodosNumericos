@@ -12,14 +12,28 @@
         <configuration>
           <source>${maven.compiler.source}</source>
           <target>${maven.compiler.target}</target>
+          <release>${maven.compiler.target}</release>
         </configuration>
       </plugin>
       <plugin>
         <groupId>org.openjfx</groupId>
         <artifactId>javafx-maven-plugin</artifactId>
         <version>0.0.8</version>
+        <executions>
+          <execution>
+            <id>default-cli</id>
+            <configuration>
+              <stripDebug>true</stripDebug>
+              <compress>2</compress>
+              <noHeaderFiles>true</noHeaderFiles>
+              <noManPages>true</noManPages>
+              <launcher>app</launcher>
+              <mainClass>${module.name}/${main.class}</mainClass>
+            </configuration>
+          </execution>
+        </executions>
         <configuration>
-          <mainClass>${main.class}</mainClass>
+          <mainClass>${module.name}/${main.class}</mainClass>
           <launcher>metodos-numericos</launcher>
           <jlinkImageName>metodos-numericos</jlinkImageName>
           <jlinkZipName>metodos-numericos</jlinkZipName>
@@ -37,7 +51,7 @@
             <configuration>
               <transformers>
                 <transformer>
-                  <mainClass>com.metodosNumericos.MainApp</mainClass>
+                  <mainClass>${main.class}</mainClass>
                 </transformer>
               </transformers>
             </configuration>
@@ -95,10 +109,11 @@
     </dependency>
   </dependencies>
   <properties>
-    <maven.compiler.target>11</maven.compiler.target>
     <main.class>com.metodosNumericos.MainApp</main.class>
     <maven.compiler.source>11</maven.compiler.source>
+    <maven.compiler.target>11</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <javafx.version>17.0.2</javafx.version>
+    <module.name>com.metodosNumericos</module.name>
   </properties>
 </project>

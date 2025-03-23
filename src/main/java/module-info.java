@@ -1,13 +1,20 @@
-module MetodosNumericos {
+module com.metodosNumericos {
     requires javafx.controls;
+    requires javafx.fxml;
     requires javafx.graphics;
-    requires MathParser.org.mXparser;
+    requires javafx.base;
 
-    // For math functions and operations
+    // Para funções e operações matemáticas
     requires java.base;
 
-    // Open packages to javafx.fxml for FXML loading
+    // Para a biblioteca de parsing de expressões matemáticas
+    requires MathParser.org.mXparser;
+
+    // Exporta os pacotes que existem no projeto
+    exports com.metodosNumericos;
+    exports com.metodosNumericos.telas;
+
+    // Abre pacotes para javafx.fxml para carregamento FXML
     opens com.metodosNumericos to javafx.fxml;
-    opens com.metodosNumericos.controllers to javafx.fxml;
-    opens com.metodosNumericos.models to javafx.fxml;
+    opens com.metodosNumericos.telas to javafx.fxml;
 }
